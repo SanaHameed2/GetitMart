@@ -1,12 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
 import { useState, useMemo } from 'react'
 import { Search, SlidersHorizontal, TrendingUp, Shield, Truck, RefreshCw } from 'lucide-react'
-import products, { categories } from '@/data/products'
-import { ProductCard } from '@/components/ProductCard'
-
-export const Route = createFileRoute('/')({
-  component: HomePage,
-})
+import products, { categories } from '../data/products'
+import { ProductCard } from '../components/ProductCard'
 
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
@@ -33,7 +28,7 @@ function HomePage() {
       list = list.filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
-          p.shortDescription.toLowerCase().includes(q) ||
+          (p.shortDescription && p.shortDescription.toLowerCase().includes(q)) ||
           p.category.toLowerCase().includes(q),
       )
     }
@@ -49,7 +44,7 @@ function HomePage() {
         list.sort((a, b) => b.rating - a.rating)
         break
       case 'reviews':
-        list.sort((a, b) => b.reviewCount - a.reviewCount)
+        list.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0))
         break
     }
 
@@ -60,7 +55,7 @@ function HomePage() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero section */}
       <section className="bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1 text-center md:text-left">
@@ -230,3 +225,5 @@ function HomePage() {
     </>
   )
 }
+
+export default HomePage

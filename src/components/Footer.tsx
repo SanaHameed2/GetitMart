@@ -1,69 +1,40 @@
-import { Zap, Twitter, Instagram, Github, Mail } from 'lucide-react'
-import { Link } from '@tanstack/react-router'
-
-export function Footer() {
+function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-400 mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-                <Zap size={16} className="text-white" />
-              </div>
-              <span className="font-bold text-lg text-white">GetItMart</span>
-            </div>
-            <p className="text-sm leading-relaxed">
-              Your one-stop mart for everyday essentials. Unbeatable value, aisle after aisle.
-            </p>
-            <div className="flex items-center gap-3 mt-5">
-              {[Twitter, Instagram, Github, Mail].map((Icon, i) => (
-                <a key={i} href="#" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition-colors">
-                  <Icon size={14} />
-                </a>
-              ))}
-            </div>
+    <footer className="bg-gray-900 text-white mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 className="text-xl font-bold mb-4">GetIt Mart</h3>
+            <p className="text-gray-400">Your one-stop shop for everything you need.</p>
           </div>
-
-          {/* Links */}
-          {[
-            {
-              title: 'Departments',
-              links: ['All Departments', 'Electronics', 'Clothing', 'Sports', 'Home & Kitchen'],
-            },
-            {
-              title: 'Support',
-              links: ['Help Center', 'Shipping Policy', 'Returns', 'Track Order', 'Contact Us'],
-            },
-            {
-              title: 'Company',
-              links: ['About Us', 'Blog', 'Careers', 'Press', 'Privacy Policy'],
-            },
-          ].map((col) => (
-            <div key={col.title}>
-              <h4 className="text-white font-semibold mb-4">{col.title}</h4>
-              <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <Link to="/" className="text-sm hover:text-white transition-colors">
-                      {link}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div>
+            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="/about" className="hover:text-white">About Us</a></li>
+              <li><a href="/contact" className="hover:text-white">Contact</a></li>
+              <li><a href="/faq" className="hover:text-white">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Policies</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="/privacy" className="hover:text-white">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-white">Terms of Service</a></li>
+              <li><a href="/returns" className="hover:text-white">Return Policy</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Contact Us</h4>
+            <p className="text-gray-400">Email: support@getitmart.com</p>
+            <p className="text-gray-400">Phone: (555) 123-4567</p>
+          </div>
         </div>
-
-        <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-          <p>© {new Date().getFullYear()} GetItMart. All rights reserved.</p>
-          <div className="flex items-center gap-1.5">
-            <span>Secure payments powered by</span>
-            <span className="text-white font-semibold">Stripe</span>
-          </div>
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2024 GetIt Mart. All rights reserved.</p>
         </div>
       </div>
     </footer>
   )
 }
+
+export default Footer 

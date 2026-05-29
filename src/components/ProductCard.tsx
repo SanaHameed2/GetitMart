@@ -1,7 +1,6 @@
-import { Link } from '@tanstack/react-router'
+import { Link } from 'react-router-dom'
 import { Star, ShoppingCart } from 'lucide-react'
-import type { Product } from '@/data/products'
-import { useCart } from '@/context/CartContext'
+import { useState } from 'react'
 
 const BADGE_COLORS: Record<string, string> = {
   'Best Seller': 'bg-amber-100 text-amber-800',
@@ -29,13 +28,19 @@ function StarRating({ rating, count }: { rating: number; count: number }) {
   )
 }
 
-export function ProductCard({ product }: { product: Product }) {
-  const { dispatch } = useCart()
+export function ProductCard({ product }: { product: any }) {
+  const [cartCount, setCartCount] = useState(0)
+
+  const addToCart = () => {
+    setCartCount(cartCount + 1)
+    // TODO: Add proper cart context later
+    console.log('Added to cart:', product.name)
+  }
 
   return (
     <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
       {/* Image */}
-      <Link to="/products/$productId" params={{ productId: product.id.toString() }} className="block relative overflow-hidden">
+      <Link to={`/product/${product.id}`} className="block relative overflow-hidden">
         <div className="aspect-square overflow-hidden bg-gray-50">
           <img
             src={product.image}
@@ -58,16 +63,16 @@ export function ProductCard({ product }: { product: Product }) {
       {/* Content */}
       <div className="p-4">
         <p className="text-xs text-indigo-600 font-medium mb-1">{product.category}</p>
-        <Link to="/products/$productId" params={{ productId: product.id.toString() }}>
+        <Link to={`/product/${product.id}`}>
           <h3 className="font-semibold text-gray-900 leading-snug hover:text-indigo-600 transition-colors line-clamp-2 mb-2">
             {product.name}
           </h3>
         </Link>
-        <StarRating rating={product.rating} count={product.reviewCount} />
+        <StarRating rating={product.rating} count={product.reviewCount || 0} />
         <div className="flex items-center justify-between mt-3">
           <span className="text-lg font-bold text-gray-900">${product.price}</span>
           <button
-            onClick={() => dispatch({ type: 'ADD_ITEM', product })}
+            onClick={addToCart}
             disabled={!product.inStock}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
@@ -79,3 +84,5 @@ export function ProductCard({ product }: { product: Product }) {
     </div>
   )
 }
+
+export default ProductCard 

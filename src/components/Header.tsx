@@ -1,13 +1,18 @@
-import { Link } from '@tanstack/react-router'
+import { Link } from 'react-router-dom'
 import { ShoppingCart, Menu, X, Zap, Sun, Moon } from 'lucide-react'
 import { useState } from 'react'
-import { useCart } from '@/context/CartContext'
-import { useDarkMode } from '@/context/DarkModeContext'
 
-export function Header() {
-  const { totalItems, dispatch } = useCart()
-  const { isDark, toggleDarkMode } = useDarkMode()
+function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isDark, setIsDark] = useState(false)
+
+  const toggleDarkMode = () => {
+    setIsDark(!isDark)
+    document.documentElement.classList.toggle('dark')
+  }
+
+  // Temporary cart count (replace with real context later)
+  const totalItems = 0
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 shadow-sm">
@@ -23,9 +28,9 @@ export function Header() {
 
           {/* Nav links */}
           <nav className="hidden md:flex items-center gap-6 ml-6 text-sm font-medium text-gray-600 dark:text-gray-300">
-            <Link to="/" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors [&.active]:text-indigo-600 dark:[&.active]:text-indigo-400">Departments</Link>
-            <a href="#products" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Deals</a>
-            <a href="#categories" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Aisles</a>
+            <Link to="/" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</Link>
+            <a href="#products" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Products</a>
+            <a href="#categories" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Categories</a>
           </nav>
 
           {/* Spacer */}
@@ -41,8 +46,8 @@ export function Header() {
           </button>
 
           {/* Cart */}
-          <button
-            onClick={() => dispatch({ type: 'TOGGLE_CART' })}
+          <Link
+            to="/cart"
             className="relative p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
             aria-label="Open cart"
           >
@@ -52,7 +57,7 @@ export function Header() {
                 {totalItems > 9 ? '9+' : totalItems}
               </span>
             )}
-          </button>
+          </Link>
 
           {/* Mobile menu toggle */}
           <button
@@ -66,15 +71,15 @@ export function Header() {
         {/* Mobile nav */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 dark:border-gray-700 py-3 space-y-1">
-            {['Departments', 'Deals', 'Aisles'].map((item) => (
-              <a
+            {['Home', 'Products', 'Categories'].map((item) => (
+              <Link
                 key={item}
-                href="#"
+                to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
                 className="block px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950 rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item}
-              </a>
+              </Link>
             ))}
           </div>
         )}
@@ -82,3 +87,5 @@ export function Header() {
     </header>
   )
 }
+
+export default Header 

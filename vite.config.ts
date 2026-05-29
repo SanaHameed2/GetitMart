@@ -1,6 +1,8 @@
-import { defineConfig } from "@tanstack/start/config";
-import viteTsConfigPaths from "vite-tsconfig-paths";
-
-export default defineConfig({
-  plugins: [viteTsConfigPaths()],
-});
+import { defineConfig } from 'vite' 
+import react from '@vitejs/plugin-react' 
+export default defineConfig({ 
+  plugins: [react()], 
+  server: { 
+    port: 5173 
+  } 
+}) 
