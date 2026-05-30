@@ -1,10 +1,8 @@
-.agents/
-.claude/
 node_modules/
-dist/
+backend/node_modules/
+frontend/node_modules/
 .env
+.DS_Store
+dist/
 *.log
-.DS_Store.agents/ 
-.claude/ 
-AGENTS.md 
-CLAUDE.local.md 
+.vite/

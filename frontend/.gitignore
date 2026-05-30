@@ -1,0 +1,10 @@
+.agents/
+.claude/
+node_modules/
+dist/
+.env
+*.log
+.DS_Store.agents/ 
+.claude/ 
+AGENTS.md 
+CLAUDE.local.md 
