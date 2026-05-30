@@ -1,4 +1,4 @@
-# GetItMart — Ecommerce Storefront
+# GetIt — Ecommerce Storefront
 
 An ecommerce storefront built with **TanStack Start** and deployed on cloudflare. It demonstrates a product catalog with basic shopping cart functionality and Stripe checkout integration.
 

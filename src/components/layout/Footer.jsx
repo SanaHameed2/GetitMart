@@ -4,7 +4,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">GetIt Mart</h3>
+            <h3 className="text-xl font-bold mb-4">GetIt</h3>
             <p className="text-gray-400">Your one-stop shop for everything you need.</p>
           </div>
           <div>
@@ -25,7 +25,7 @@ function Footer() {
           </div>
           <div>
             <h4 className="font-semibold mb-4">Contact Us</h4>
-            <p className="text-gray-400">Email: support@getitmart.com</p>
+            <p className="text-gray-400">Email: support@getit.com</p>
             <p className="text-gray-400">Phone: (555) 123-4567</p>
           </div>
         </div>

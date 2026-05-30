@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom'
 import { Star, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 
-const BADGE_COLORS: Record<string, string> = {
+const BADGE_COLORS = {
   'Best Seller': 'bg-amber-100 text-amber-800',
   New: 'bg-green-100 text-green-800',
   Sale: 'bg-red-100 text-red-800',
   Handmade: 'bg-purple-100 text-purple-800',
 }
 
-function StarRating({ rating, count }: { rating: number; count: number }) {
+function StarRating({ rating, count }) {
   return (
     <div className="flex items-center gap-1.5">
       <div className="flex items-center gap-0.5">
@@ -28,12 +28,11 @@ function StarRating({ rating, count }: { rating: number; count: number }) {
   )
 }
 
-export function ProductCard({ product }: { product: any }) {
+function ProductCard({ product }) {
   const [cartCount, setCartCount] = useState(0)
 
   const addToCart = () => {
     setCartCount(cartCount + 1)
-    // TODO: Add proper cart context later
     console.log('Added to cart:', product.name)
   }
 
@@ -49,14 +48,9 @@ export function ProductCard({ product }: { product: any }) {
           />
         </div>
         {product.badge && (
-          <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full ${BADGE_COLORS[product.badge] ?? 'bg-gray-100 text-gray-800'}`}>
+          <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full ${BADGE_COLORS[product.badge] || 'bg-gray-100 text-gray-800'}`}>
             {product.badge}
           </span>
-        )}
-        {!product.inStock && (
-          <div className="absolute inset-0 bg-white/70 flex items-center justify-center">
-            <span className="bg-gray-800 text-white text-sm font-semibold px-3 py-1 rounded-full">Out of Stock</span>
-          </div>
         )}
       </Link>
 
@@ -73,8 +67,7 @@ export function ProductCard({ product }: { product: any }) {
           <span className="text-lg font-bold text-gray-900">${product.price}</span>
           <button
             onClick={addToCart}
-            disabled={!product.inStock}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors"
           >
             <ShoppingCart size={14} />
             Add
@@ -85,4 +78,4 @@ export function ProductCard({ product }: { product: any }) {
   )
 }
 
-export default ProductCard 
+export default ProductCard

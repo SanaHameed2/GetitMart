@@ -23,8 +23,7 @@ function Header() {
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center group-hover:bg-indigo-700 transition-colors">
               <Zap size={16} className="text-white" />
             </div>
-            <span className="font-bold text-lg text-gray-900 dark:text-white">GetItMart</span>
-          </Link>
+<span className="font-bold text-lg text-gray-900 dark:text-white">GetIt</span>          </Link>
 
           {/* Nav links */}
           <nav className="hidden md:flex items-center gap-6 ml-6 text-sm font-medium text-gray-600 dark:text-gray-300">
