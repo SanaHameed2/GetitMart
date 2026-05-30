@@ -1,6 +1,7 @@
-# Local Netlify folder
-.netlify
-node_modules/ 
-dist/ 
-dist-temp/ 
-.vite/ 
+.agents/
+.claude/
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
